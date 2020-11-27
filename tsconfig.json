@@ -1,14 +1,15 @@
 {
   "compilerOptions": {
     "outDir": "./dist", // 输出目录
+    "moduleResolution": "node",
     "sourceMap": true, // 是否生成 sourcemap文件
     "strict": true,// 是否严格模式
-    "noImplicitAny": true, // 是否隐式any
+    "noImplicitAny": false, // 是否隐式any
     "strictNullChecks": true, // null检查
     "module": "ESNext", // 模块规范，要把所有的模块编译成什么模块
     "target": "es5",// 编译目标 es5
     "jsx": "react", // 如何编译jsx
-    "esModuleInterop": false, // 允许在commonjs 和  es module 之间转换
+    "esModuleInterop": true, // 允许在commonjs 和  es module 之间转换
     "baseUrl": ".", // 查找非相对路径的起始位置
     "paths": {
       "@/*": [
@@ -17,6 +18,6 @@
     }
   },
   "include": [
-    "./src/index.tsx" ,// 编译src 目录下的模块
+    "./src/**/*" ,// 编译src 目录下的模块
   ]
 }

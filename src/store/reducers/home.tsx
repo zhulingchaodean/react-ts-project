@@ -1,5 +1,9 @@
+import {AnyAction} from 'redux'
 import {HomeState} from './moduleInterface'
 
-export default function(initialState:HomeState,action){
-    
+const initialState:HomeState = {
+
+}
+export default function(state:HomeState=initialState,action:AnyAction):HomeState{
+  return state;
 }
