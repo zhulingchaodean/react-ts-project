@@ -1,5 +1,6 @@
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const path = require("path");
 let mode = process.env.NODE_ENV == 'production'?'production':'development';
 module.exports = {
@@ -21,7 +22,7 @@ module.exports = {
     extensions:[".ts",".tsx",".js",".json"],
     alias:{
       "@": path.resolve('src'),
-      "~":path.resolve(__dirname,'node_modules'),
+      "~":[path.resolve(__dirname,'node_modules')],
     }
   },
   module:{
@@ -38,11 +39,16 @@ module.exports = {
       },
       {
         test:/\.css/,
-        use:['style-loader','css-loader']
+        use:['style-loader','css-loader','postcss-loader']
       },
       {
         test:/\.less$/,
-        use:['style-loader','css-loader','less-loader']
+        use:[
+          'style-loader',
+          'css-loader',
+          'postcss-loader',
+          'less-loader'
+        ]
       },
       {
         test:/\.(jpg|png|jpeg|gif|svg)$/,
@@ -53,10 +59,11 @@ module.exports = {
   plugins:[
     new HtmlWebpackPlugin({
       template:"./src/index.html",
-      filename:"index.[hash].html",
+      filename: mode=='production'?"index.[hash].html":'index.html',
     }),
     // 热跟新插件
     new webpack.HotModuleReplacementPlugin(),
+    new CleanWebpackPlugin()
   ]
 
 }

@@ -1,5 +1,5 @@
 export interface HomeState {
-
+  currentCategory:string,
 }
 export interface MineState{
 

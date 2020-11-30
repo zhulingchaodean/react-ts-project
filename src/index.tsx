@@ -8,7 +8,8 @@ import zh_CN from "antd/lib/locale-provider/zh_CN";
 import "@/assets/style/common.less";
 import Home from './routes/Home/Home'; // 路由组件
 import Mine from './routes/Mine/Mine'; // 路由组件
-import Profile from './routes/Profile/Profile'; // 路由组件
+import Order from './routes/Order/Order'; // 路由组件
+import Club from './routes/Club/Club';
 import Tab from '@/components/tabs/Tab';
 import {ConnectedRouter} from "connected-react-router";
 import history from '@/history';
@@ -21,11 +22,13 @@ ReactDOM.render(
       <ConfigProvider locale={zh_CN}>
         <main className="main-continer">
           <Switch >
-            <Route path="/" component={Home}/> 
-            <Route path="/profile" component={Profile}/> 
+            <Route exact path="/" component={Home}/> 
+            <Route path="/club" component={Club}/>
+            <Route path="/order" component={Order}/> 
             <Route path="/mine" component={Mine} /> 
           </Switch>  
         </main>   
+        <Tab />
       </ConfigProvider>  
     </ConnectedRouter> 
   </Provider>,
