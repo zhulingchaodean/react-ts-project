@@ -2,13 +2,14 @@
 //   [key in keyof typeof reducers] : ReturnType<typeof reducers[key]>
 // }
 
-import { HomeState, MineState, ProfileState } from "@/store/reducers/moduleInterface";
+import { CommonState, HomeState, MineState, OtherState} from "@/store/reducers/moduleInterface";
 import { RouterState } from "connected-react-router";
 
-export { HomeState, MineState, ProfileState } from "@/store/reducers/moduleInterface";
+export { HomeState, MineState, OtherState} from "@/store/reducers/moduleInterface";
 export interface CombinedState {
+  common:CommonState,
   home:HomeState,
   mine:MineState,
-  profile:ProfileState,
+  other:OtherState,
   router:RouterState
 }

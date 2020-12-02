@@ -1,6 +1,7 @@
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const tsImportPluginFactory = require('ts-import-plugin');
 const path = require("path");
 let mode = process.env.NODE_ENV == 'production'?'production':'development';
 module.exports = {
@@ -29,8 +30,23 @@ module.exports = {
     rules:[
       {
         test:/\.(j|t)sx?$/,
-        use:['ts-loader'],
-        exclude:/node_modules/,
+        loader:"ts-loader",
+        options:{
+          transpileOnly:true, // 只转义不检查
+          getCustomTransformers:()=>({ // 定义自定义转换器
+            before:[
+              tsImportPluginFactory({
+                libraryName:'antd', // 对哪个模进行按需加载
+                libraryDirectory:"es", // 按需加载必须是 es module
+                style:"css", // 自动引入对应的css
+              })
+            ]
+          }),
+          compilerOptions:{
+            module: 'es2015'
+          }
+        },
+        // exclude:/node_modules/,
       },
       {
         enforce:'pre',
