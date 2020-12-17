@@ -2,7 +2,7 @@ export interface CommonState{
   currentCategory:string
 }
 export interface HomeState {
-
+  count:number
 }
 
 

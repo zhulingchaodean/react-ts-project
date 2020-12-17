@@ -14,6 +14,7 @@ import Tab from '@/components/tabs/Tab';
 import {ConnectedRouter} from "connected-react-router";
 import AnimatedSwitch from '@/components/animatedSwitch/AnimatedSwitch'
 import history from '@/history';
+import Header from './components/header/Header';
 let root= document.getElementById('root');
 console.log(Home)
 
@@ -21,6 +22,7 @@ ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <ConfigProvider locale={zh_CN}>
+        <Header/>
         <main className="main-continer">
           <Switch>
             <Route exact path="/" component={AnimatedSwitch(Home)}/> 
